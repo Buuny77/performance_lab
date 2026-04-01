@@ -1,0 +1,374 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- خلفية متحركة -->
+    <div class="absolute inset-0">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-blue/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-purple/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+    </div>
+    
+    <!-- محتوى Hero -->
+    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+        <!-- الشعار المتحرك -->
+        <div class="mb-8 fade-in-up">
+            <div class="inline-flex items-center space-x-4 space-x-reverse mb-6">
+                <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-neon-blue to-neon-purple 
+                            flex items-center justify-center shadow-[0_0_40px_rgba(0,243,255,0.4)]
+                            animate-float">
+                    <i class="fas fa-microchip text-4xl text-white"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- العنوان الرئيسي -->
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 fade-in-up delay-200">
+            <span class="text-white">Performance</span>
+            <span class="gradient-text">Lab</span>
+        </h1>
+        
+        <!-- الوصف -->
+        <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto fade-in-up delay-300">
+            منصتك الشاملة لمراجعات الأجهزة التقنية القائمة على البيانات.
+            <br>
+            <span class="text-neon-blue">اختبر أداء جهازك قبل الشراء</span>
+        </p>
+        
+        <!-- أزرار CTA -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in-up delay-400">
+            <a href="{% url 'tools:will_it_run' %}" 
+               class="group px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full
+                      text-white font-bold text-lg hover:shadow-[0_0_40px_rgba(0,243,255,0.5)]
+                      transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 space-x-reverse">
+                <i class="fas fa-check-circle"></i>
+                <span>هل يعمل جهازي؟</span>
+            </a>
+            <a href="{% url 'reviews:index' %}" 
+               class="group px-8 py-4 border-2 border-neon-blue/50 rounded-full
+                      text-white font-bold text-lg hover:bg-neon-blue/10 hover:border-neon-blue
+                      transition-all duration-300 flex items-center space-x-3 space-x-reverse">
+                <i class="fas fa-search"></i>
+                <span>استعرض المراجعات</span>
+            </a>
+        </div>
+        
+        <!-- إحصائيات -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 fade-in-up delay-500">
+            <div class="text-center">
+                <div class="text-4xl font-bold text-neon-blue counter" data-target="500">0</div>
+                <div class="text-gray-400 mt-2">جهزة مراجعة</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-neon-purple counter" data-target="1000">0</div>
+                <div class="text-gray-400 mt-2">اختبار أداء</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-neon-pink counter" data-target="50">0</div>
+                <div class="text-gray-400 mt-2">لعبة مدعومة</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl font-bold text-neon-green counter" data-target="25">0</div>
+                <div class="text-gray-400 mt-2">نموذج ذكاء اصطناعي</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- سهم التمرير -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <i class="fas fa-chevron-down text-2xl text-neon-blue"></i>
+    </div>
+</section>
+
+<!-- قسم الأدوات التفاعلية -->
+<section class="py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-white mb-4">
+                أدواتنا <span class="gradient-text">التفاعلية</span>
+            </h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                اختبر أداء جهازك باستخدام أدواتنا المتقدمة قبل اتخاذ قرار الشراء
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- أداة "هل يعمل؟" -->
+            <div class="neon-card p-8 scroll-reveal">
+                <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-neon-blue to-neon-purple 
+                            flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(0,243,255,0.3)]">
+                    <i class="fas fa-check-circle text-3xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">هل يعمل؟</h3>
+                <p class="text-gray-400 mb-6">
+                    تحقق مما إذا كان جهازك قادراً على تشغيل الألعاب أو نماذج الذكاء الاصطناعي محلياً
+                </p>
+                <a href="{% url 'tools:will_it_run' %}" 
+                   class="inline-flex items-center text-neon-blue hover:text-white transition-colors group">
+                    <span>جرب الآن</span>
+                    <i class="fas fa-arrow-left mr-2 transform group-hover:-translate-x-2 transition-transform"></i>
+                </a>
+            </div>
+            
+            <!-- أداة المقارنة -->
+            <div class="neon-card p-8 scroll-reveal" style="animation-delay: 0.1s;">
+                <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-neon-purple to-neon-pink 
+                            flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(188,19,254,0.3)]">
+                    <i class="fas fa-exchange-alt text-3xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">مقارنة الأجهزة</h3>
+                <p class="text-gray-400 mb-6">
+                    قارن بين الأجهزة المختلفة لاختيار الأنسب لاحتياجاتك
+                </p>
+                <a href="{% url 'tools:compare' %}" 
+                   class="inline-flex items-center text-neon-purple hover:text-white transition-colors group">
+                    <span>قارن الآن</span>
+                    <i class="fas fa-arrow-left mr-2 transform group-hover:-translate-x-2 transition-transform"></i>
+                </a>
+            </div>
+            
+            <!-- أداة التحليل -->
+            <div class="neon-card p-8 scroll-reveal" style="animation-delay: 0.2s;">
+                <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-neon-pink to-neon-green 
+                            flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(255,0,110,0.3)]">
+                    <i class="fas fa-chart-line text-3xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">تحليل الأداء</h3>
+                <p class="text-gray-400 mb-6">
+                    احصل على تحليل مفصل لأداء جهازك في مختلف المهام
+                </p>
+                <a href="{% url 'tools:analyze' %}" 
+                   class="inline-flex items-center text-neon-pink hover:text-white transition-colors group">
+                    <span>حلل الآن</span>
+                    <i class="fas fa-arrow-left mr-2 transform group-hover:-translate-x-2 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- قسم أحدث المراجعات -->
+<section class="py-20 px-4 bg-gradient-to-b from-transparent to-black/30">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row items-center justify-between mb-16">
+            <div>
+                <h2 class="text-4xl font-bold text-white mb-4">
+                    أحدث <span class="gradient-text">المراجعات</span>
+                </h2>
+                <p class="text-gray-400 text-lg">
+                    مراجعات تقنية شاملة للأجهزة والمكونات
+                </p>
+            </div>
+            <a href="{% url 'reviews:index' %}" 
+               class="mt-6 md:mt-0 px-6 py-3 border border-neon-blue/50 rounded-full
+                      text-neon-blue hover:bg-neon-blue/10 transition-all duration-300
+                      flex items-center space-x-2 space-x-reverse">
+                <span>عرض الكل</span>
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for review in latest_reviews %}
+            <div class="neon-card overflow-hidden scroll-reveal">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="{{ review.featured_image.url }}" alt="{{ review.title }}" 
+                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute top-4 right-4 px-3 py-1 bg-neon-blue/80 rounded-full text-sm text-white">
+                        {{ review.get_review_type_display }}
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-3 line-clamp-2">{{ review.title }}</h3>
+                    <p class="text-gray-400 text-sm mb-4 line-clamp-3">{{ review.summary }}</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-1 space-x-reverse">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="text-white font-bold">{{ review.overall_score }}</span>
+                        </div>
+                        <a href="{% url 'reviews:detail' review.id %}" 
+                           class="text-neon-blue hover:text-white transition-colors text-sm">
+                            اقرأ المزيد
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-3 text-center py-12">
+                <i class="fas fa-inbox text-6xl text-gray-600 mb-4"></i>
+                <p class="text-gray-400">لا توجد مراجعات حالياً</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- قسم أفضل الأجهزة -->
+<section class="py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-white mb-4">
+                أفضل <span class="gradient-text">الأجهزة</span> أداءً
+            </h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                الأجهزة الأعلى أداءً حسب اختباراتنا الشاملة
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {% for device in top_devices %}
+            <div class="neon-card p-6 scroll-reveal">
+                <div class="relative mb-4">
+    {% if device.image %}
+        <img src="{{ device.image.url }}" alt="{{ device.name }}" class="w-full h-40 object-contain">
+    {% else %}
+        <img src="/static/images/no-image.png" alt="No image available" class="w-full h-40 object-contain">
+    {% endif %}
+    
+    <div class="absolute -top-2 -right-2 w-10 h-10 rounded-full ...">
+        {{ forloop.counter }}
+    </div>
+</div>
+                <h3 class="text-lg font-bold text-white mb-2">{{ device.brand }} {{ device.name }}</h3>
+                <div class="space-y-2 mb-4">
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-gray-400">المعالج:</span>
+                        <span class="text-white">{{ device.processor|truncatechars:20 }}</span>
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-gray-400">الذاكرة:</span>
+                        <span class="text-white">{{ device.ram }}</span>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-gray-800">
+                    <div class="text-neon-blue font-bold">{{ device.benchmark_score }} نقطة</div>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-4 text-center py-12">
+                <i class="fas fa-laptop text-6xl text-gray-600 mb-4"></i>
+                <p class="text-gray-400">لا توجد أجهزة مسجلة حالياً</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- قسم التخصصات -->
+<section class="py-20 px-4 bg-gradient-to-b from-black/30 to-transparent">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-white mb-4">
+                تخصصات <span class="gradient-text">الموقع</span>
+            </h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                نغطي جميع احتياجات المطورين واللاعبين
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- اللابتوبات -->
+            <a href="{% url 'reviews:laptops' %}" class="group">
+                <div class="neon-card p-8 text-center h-full transition-all duration-300 group-hover:scale-105">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-neon-blue to-blue-600 
+                                flex items-center justify-center mb-6 
+                                group-hover:shadow-[0_0_30px_rgba(0,243,255,0.4)] transition-shadow">
+                        <i class="fas fa-laptop text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">اللابتوبات</h3>
+                    <p class="text-gray-400 text-sm">
+                        مراجعات شاملة للابتوبات المخصصة للألعاب والتطوير
+                    </p>
+                </div>
+            </a>
+            
+            <!-- أجهزة اليد -->
+            <a href="{% url 'reviews:handhelds' %}" class="group">
+                <div class="neon-card p-8 text-center h-full transition-all duration-300 group-hover:scale-105">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-neon-purple to-purple-600 
+                                flex items-center justify-center mb-6 
+                                group-hover:shadow-[0_0_30px_rgba(188,19,254,0.4)] transition-shadow">
+                        <i class="fas fa-gamepad text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">أجهزة اليد</h3>
+                    <p class="text-gray-400 text-sm">
+                        أفضل أجهزة اليد المحمولة لتجربة الألعاب في أي مكان
+                    </p>
+                </div>
+            </a>
+            
+            <!-- المكونات -->
+            <a href="{% url 'reviews:components' %}" class="group">
+                <div class="neon-card p-8 text-center h-full transition-all duration-300 group-hover:scale-105">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-neon-pink to-pink-600 
+                                flex items-center justify-center mb-6 
+                                group-hover:shadow-[0_0_30px_rgba(255,0,110,0.4)] transition-shadow">
+                        <i class="fas fa-microchip text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">المكونات</h3>
+                    <p class="text-gray-400 text-sm">
+                        مراجعات المعالجات، كروت الشاشة، والذواكر
+                    </p>
+                </div>
+            </a>
+            
+            <!-- أدوات المطورين -->
+            <a href="{% url 'reviews:extensions' %}" class="group">
+                <div class="neon-card p-8 text-center h-full transition-all duration-300 group-hover:scale-105">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-neon-green to-green-600 
+                                flex items-center justify-center mb-6 
+                                group-hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] transition-shadow">
+                        <i class="fas fa-code text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">أدوات المطورين</h3>
+                    <p class="text-gray-400 text-sm">
+                        أفضل إضافات VS Code وأدوات الأتمتة
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- قسم الاشتراك في النشرة -->
+<section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+        <div class="neon-card p-8 md:p-12 text-center relative overflow-hidden">
+            <!-- تأثيرات خلفية -->
+            <div class="absolute top-0 left-0 w-64 h-64 bg-neon-blue/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 right-0 w-64 h-64 bg-neon-purple/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+            
+            <div class="relative z-10">
+                <i class="fas fa-envelope-open-text text-6xl text-neon-blue mb-6"></i>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                    اشترك في نشرتنا البريدية
+                </h2>
+                <p class="text-gray-400 mb-8 max-w-xl mx-auto">
+                    احصل على أحدث المراجعات والأخبار التقنية مباشرة إلى بريدك الإلكتروني
+                </p>
+                
+                <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto" onsubmit="event.preventDefault(); showNotification('تم الاشتراك بنجاح!');">
+                    <input type="email" 
+                           placeholder="بريدك الإلكتروني" 
+                           class="flex-1 px-6 py-4 bg-gray-800/50 border border-gray-700 rounded-full
+                                  text-white placeholder-gray-500
+                                  focus:outline-none focus:border-neon-blue focus:shadow-[0_0_20px_rgba(0,243,255,0.2)]
+                                  transition-all duration-300">
+                    <button type="submit" 
+                            class="px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full
+                                   text-white font-bold hover:shadow-[0_0_30px_rgba(0,243,255,0.4)]
+                                   transition-all duration-300 transform hover:scale-105
+                                   flex items-center justify-center space-x-2 space-x-reverse">
+                        <span>اشترك</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

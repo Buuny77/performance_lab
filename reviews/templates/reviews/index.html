@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            <span class="gradient-text">المراجعات</span> التقنية
+        </h1>
+        <p class="text-xl text-gray-400">
+            مراجعات شاملة ومفصلة للأجهزة والمكونات
+        </p>
+    </div>
+</section>
+
+<section class="py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for review in reviews %}
+            <div class="neon-card overflow-hidden">
+                <div class="relative h-48">
+                    <img src="{{ review.featured_image.url }}" alt="{{ review.title }}" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 px-3 py-1 bg-neon-blue/80 rounded-full text-sm text-white">
+                        {{ review.get_review_type_display }}
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-3">{{ review.title }}</h3>
+                    <p class="text-gray-400 text-sm mb-4">{{ review.summary|truncatechars:100 }}</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-1 space-x-reverse">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="text-white font-bold">{{ review.overall_score }}</span>
+                        </div>
+                        <a href="{% url 'reviews:detail' review.id %}" class="text-neon-blue hover:text-white transition-colors">
+                            اقرأ المزيد
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-3 text-center py-12">
+                <p class="text-gray-400">لا توجد مراجعات حالياً</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- ترقيم الصفحات -->
+        {% if reviews.has_other_pages %}
+        <div class="flex justify-center mt-12 space-x-2 space-x-reverse">
+            {% if reviews.has_previous %}
+            <a href="?page={{ reviews.previous_page_number }}" class="px-4 py-2 border border-gray-700 rounded-lg text-white hover:border-neon-blue transition-colors">
+                <i class="fas fa-chevron-right"></i>
+            </a>
+            {% endif %}
+            
+            {% for num in reviews.paginator.page_range %}
+            {% if reviews.number == num %}
+            <span class="px-4 py-2 bg-neon-blue rounded-lg text-white">{{ num }}</span>
+            {% else %}
+            <a href="?page={{ num }}" class="px-4 py-2 border border-gray-700 rounded-lg text-white hover:border-neon-blue transition-colors">{{ num }}</a>
+            {% endif %}
+            {% endfor %}
+            
+            {% if reviews.has_next %}
+            <a href="?page={{ reviews.next_page_number }}" class="px-4 py-2 border border-gray-700 rounded-lg text-white hover:border-neon-blue transition-colors">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

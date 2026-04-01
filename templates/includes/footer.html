@@ -1,0 +1,190 @@
+{% load static %}
+<!-- Footer -->
+<footer class="relative mt-20 overflow-hidden">
+    <!-- تأثير النيون العلوي -->
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-purple to-transparent"></div>
+    
+    <!-- خلفية متدرجة -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-card-bg to-transparent"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            
+            <!-- العمود الأول: الشعار والوصف -->
+            <div class="space-y-6">
+                <a href="{% url 'main:home' %}" class="flex items-center space-x-3 space-x-reverse group">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-blue to-neon-purple 
+                                flex items-center justify-center shadow-[0_0_20px_rgba(0,243,255,0.3)]">
+                        <i class="fas fa-microchip text-2xl text-white"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-bold text-white">Performance</span>
+                        <span class="text-neon-purple font-bold -mt-1">Lab</span>
+                    </div>
+                </a>
+                <p class="text-gray-400 leading-relaxed">
+                    منصتك الشاملة لمراجعات الأجهزة التقنية القائمة على البيانات. 
+                    نساعدك في اختيار الأجهزة المثلى للألعاب والبرمجة وتطوير الذكاء الاصطناعي.
+                </p>
+                
+                <!-- أيقونات التواصل الاجتماعي -->
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <a href="#" class="social-icon group">
+                        <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center
+                                    group-hover:bg-neon-blue group-hover:shadow-[0_0_20px_rgba(0,243,255,0.5)]
+                                    transition-all duration-300">
+                            <i class="fab fa-twitter text-gray-400 group-hover:text-white transition-colors"></i>
+                        </div>
+                    </a>
+                    <a href="#" class="social-icon group">
+                        <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center
+                                    group-hover:bg-neon-purple group-hover:shadow-[0_0_20px_rgba(188,19,254,0.5)]
+                                    transition-all duration-300">
+                            <i class="fab fa-discord text-gray-400 group-hover:text-white transition-colors"></i>
+                        </div>
+                    </a>
+                    <a href="#" class="social-icon group">
+                        <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center
+                                    group-hover:bg-neon-pink group-hover:shadow-[0_0_20px_rgba(255,0,110,0.5)]
+                                    transition-all duration-300">
+                            <i class="fab fa-youtube text-gray-400 group-hover:text-white transition-colors"></i>
+                        </div>
+                    </a>
+                    <a href="#" class="social-icon group">
+                        <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center
+                                    group-hover:bg-neon-green group-hover:shadow-[0_0_20px_rgba(57,255,20,0.5)]
+                                    transition-all duration-300">
+                            <i class="fab fa-github text-gray-400 group-hover:text-white transition-colors"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- العمود الثاني: المراجعات -->
+            <div>
+                <h3 class="text-lg font-bold text-white mb-6 relative inline-block">
+                    المراجعات
+                    <span class="absolute -bottom-2 right-0 w-12 h-1 bg-gradient-to-l from-neon-blue to-transparent rounded-full"></span>
+                </h3>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="{% url 'reviews:laptops' %}" 
+                           class="text-gray-400 hover:text-neon-blue transition-colors flex items-center group">
+                            <i class="fas fa-laptop ml-2 text-neon-blue opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            <span>مراجعات اللابتوبات</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'reviews:handhelds' %}" 
+                           class="text-gray-400 hover:text-neon-blue transition-colors flex items-center group">
+                            <i class="fas fa-gamepad ml-2 text-neon-blue opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            <span>أجهزة اليد المحمولة</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'reviews:components' %}" 
+                           class="text-gray-400 hover:text-neon-blue transition-colors flex items-center group">
+                            <i class="fas fa-microchip ml-2 text-neon-blue opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            <span>المكونات الداخلية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'reviews:extensions' %}" 
+                           class="text-gray-400 hover:text-neon-blue transition-colors flex items-center group">
+                            <i class="fas fa-code ml-2 text-neon-blue opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            <span>أدوات المطورين</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- العمود الثالث: الأدوات -->
+            <div>
+                <h3 class="text-lg font-bold text-white mb-6 relative inline-block">
+                    الأدوات التفاعلية
+                    <span class="absolute -bottom-2 right-0 w-12 h-1 bg-gradient-to-l from-neon-purple to-transparent rounded-full"></span>
+                </h3>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="{% url 'tools:will_it_run' %}" 
+                           class="text-gray-400 hover:text-neon-purple transition-colors flex items-center group">
+                            <i class="fas fa-check-circle ml-2 text-neon-purple opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            <span>هل يعمل؟</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'tools:compare' %}" 
+                           class="text-gray-400 hover:text-neon-purple transition-colors flex items-center group">
+                            <i class="fas fa-exchange-alt ml-2 text-neon-purple opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            <span>مقارنة الأجهزة</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'tools:analyze' %}" 
+                           class="text-gray-400 hover:text-neon-purple transition-colors flex items-center group">
+                            <i class="fas fa-chart-line ml-2 text-neon-purple opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            <span>تحليل الأداء</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- العمود الرابع: النشرة البريدية -->
+            <div>
+                <h3 class="text-lg font-bold text-white mb-6 relative inline-block">
+                    اشترك في النشرة
+                    <span class="absolute -bottom-2 right-0 w-12 h-1 bg-gradient-to-l from-neon-pink to-transparent rounded-full"></span>
+                </h3>
+                <p class="text-gray-400 mb-4">
+                    احصل على أحدث المراجعات والأخبار التقنية مباشرة إلى بريدك.
+                </p>
+                <form class="space-y-3" onsubmit="event.preventDefault(); showNotification('تم الاشتراك بنجاح!');">
+                    <div class="relative">
+                        <input type="email" 
+                               placeholder="بريدك الإلكتروني" 
+                               class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-xl
+                                      text-white placeholder-gray-500
+                                      focus:outline-none focus:border-neon-pink focus:shadow-[0_0_20px_rgba(255,0,110,0.2)]
+                                      transition-all duration-300">
+                        <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                    </div>
+                    <button type="submit" 
+                            class="w-full py-3 bg-gradient-to-r from-neon-pink to-neon-purple rounded-xl
+                                   text-white font-bold hover:shadow-[0_0_30px_rgba(255,0,110,0.4)]
+                                   transition-all duration-300 transform hover:scale-[1.02]
+                                   flex items-center justify-center space-x-2 space-x-reverse">
+                        <span>اشترك الآن</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- حقوق النشر -->
+        <div class="mt-16 pt-8 border-t border-gray-800">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                <p class="text-gray-500 text-sm">
+                    جميع الحقوق محفوظة &copy; {% now "Y" %} Performance Lab
+                </p>
+                <div class="flex items-center space-x-6 space-x-reverse">
+                    <a href="#" class="text-gray-500 hover:text-neon-blue text-sm transition-colors">سياسة الخصوصية</a>
+                    <a href="#" class="text-gray-500 hover:text-neon-blue text-sm transition-colors">شروط الاستخدام</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- تأثيرات النيون الخلفية -->
+    <div class="absolute bottom-0 left-1/4 w-64 h-64 bg-neon-blue/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-neon-purple/5 rounded-full blur-3xl pointer-events-none"></div>
+</footer>
+
+<!-- Toast Notification -->
+<div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 px-6 py-3 bg-card-bg border border-neon-green/50 
+                        rounded-xl shadow-[0_0_30px_rgba(57,255,20,0.2)] text-white
+                        transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+    <div class="flex items-center space-x-3 space-x-reverse">
+        <i class="fas fa-check-circle text-neon-green"></i>
+        <span id="toast-message"></span>
+    </div>
+</div>

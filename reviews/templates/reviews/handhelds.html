@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            أجهزة <span class="gradient-text">اليد</span>
+        </h1>
+        <p class="text-xl text-gray-400">
+            أفضل أجهزة اليد المحمولة للألعاب
+        </p>
+    </div>
+</section>
+
+<section class="py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for handheld in handhelds %}
+            <div class="neon-card p-6">
+                <img src="{{ handheld.image.url }}" alt="{{ handheld.name }}" class="w-full h-48 object-contain mb-4">
+                <h3 class="text-xl font-bold text-white mb-2">{{ handheld.brand }} {{ handheld.name }}</h3>
+                <p class="text-gray-400 text-sm mb-4">{{ handheld.processor }}</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-neon-purple font-bold">{{ handheld.gaming_score }} نقطة ألعاب</span>
+                    <span class="text-white">{{ handheld.price }} ريال</span>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-3 text-center py-12">
+                <p class="text-gray-400">لا توجد أجهزة مسجلة حالياً</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

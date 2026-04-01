@@ -1,0 +1,675 @@
+/*
+ * Animations CSS
+ * Performance Lab - تأثيرات الحركة
+ */
+
+/* ==================== تأثيرات الظهور ==================== */
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-down {
+    animation: fadeInDown 0.6s ease-out forwards;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-left {
+    animation: fadeInLeft 0.6s ease-out forwards;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fade-in-right {
+    animation: fadeInRight 0.6s ease-out forwards;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ==================== تأثيرات التأخير ==================== */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+
+/* ==================== تأثيرات الاستمرار ==================== */
+.infinite {
+    animation-iteration-count: infinite;
+}
+
+/* ==================== تأثيرات التحويم ==================== */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.hover-rotate {
+    transition: transform 0.3s ease;
+}
+
+.hover-rotate:hover {
+    transform: rotate(5deg);
+}
+
+/* ==================== تأثيرات النبض ==================== */
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(0, 243, 255, 0.6);
+    }
+}
+
+/* ==================== تأثيرات الاهتزاز ==================== */
+.shake:hover {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* ==================== تأثيرات الوميض ==================== */
+.flash {
+    animation: flash 1s ease-in-out infinite;
+}
+
+@keyframes flash {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ==================== تأثيرات الدوران ==================== */
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spin-slow {
+    animation: spin 3s linear infinite;
+}
+
+.spin-reverse {
+    animation: spin-reverse 1s linear infinite;
+}
+
+@keyframes spin-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+/* ==================== تأثيرات التموج ==================== */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.ripple:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* ==================== تأثيرات الخط المرسوم ==================== */
+.draw-line {
+    position: relative;
+}
+
+.draw-line::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00f3ff, #bc13fe);
+    transition: width 0.3s ease;
+}
+
+.draw-line:hover::after {
+    width: 100%;
+}
+
+/* ==================== تأثيرات العد ==================== */
+.count-up {
+    animation: countUp 2s ease-out forwards;
+}
+
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== تأثيرات الوجه ==================== */
+.flip {
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+}
+
+.flip:hover {
+    transform: rotateY(180deg);
+}
+
+/* ==================== تأثيرات التكبير ==================== */
+.zoom-in {
+    animation: zoomIn 0.5s ease-out forwards;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.zoom-out {
+    animation: zoomOut 0.5s ease-out forwards;
+}
+
+@keyframes zoomOut {
+    from {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ==================== تأثيرات الارتداد ==================== */
+.bounce {
+    animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.bounce-in {
+    animation: bounceIn 0.6s ease-out forwards;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ==================== تأثيرات الاهتزاز الدائري ==================== */
+.wobble {
+    animation: wobble 1s ease-in-out infinite;
+}
+
+@keyframes wobble {
+    0%, 100% {
+        transform: translateX(0) rotate(0);
+    }
+    15% {
+        transform: translateX(-25px) rotate(-5deg);
+    }
+    30% {
+        transform: translateX(20px) rotate(3deg);
+    }
+    45% {
+        transform: translateX(-15px) rotate(-3deg);
+    }
+    60% {
+        transform: translateX(10px) rotate(2deg);
+    }
+    75% {
+        transform: translateX(-5px) rotate(-1deg);
+    }
+}
+
+/* ==================== تأثيرات التلاشي ==================== */
+.fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* ==================== تأثيرات الانزلاق ==================== */
+.slide-left {
+    animation: slideLeft 0.5s ease-out forwards;
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-right {
+    animation: slideRight 0.5s ease-out forwards;
+}
+
+@keyframes slideRight {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ==================== تأثيرات القلب ==================== */
+.heartbeat {
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    14% {
+        transform: scale(1.1);
+    }
+    28% {
+        transform: scale(1);
+    }
+    42% {
+        transform: scale(1.1);
+    }
+    70% {
+        transform: scale(1);
+    }
+}
+
+/* ==================== تأثيرات التموج الدائري ==================== */
+.radar {
+    position: relative;
+}
+
+.radar::before,
+.radar::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #00f3ff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: radar 2s ease-out infinite;
+}
+
+.radar::after {
+    animation-delay: 1s;
+}
+
+@keyframes radar {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 200%;
+        height: 200%;
+        opacity: 0;
+    }
+}
+
+/* ==================== تأثيرات التدرج المتحرك ==================== */
+.gradient-text-animated {
+    background: linear-gradient(
+        90deg,
+        #00f3ff,
+        #bc13fe,
+        #ff006e,
+        #39ff14,
+        #00f3ff
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientText 3s linear infinite;
+}
+
+@keyframes gradientText {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* ==================== تأثيرات الظل المتحرك ==================== */
+.shadow-animated {
+    animation: shadowMove 2s ease-in-out infinite;
+}
+
+@keyframes shadowMove {
+    0%, 100% {
+        box-shadow: 0 5px 20px rgba(0, 243, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 5px 40px rgba(188, 19, 254, 0.5);
+    }
+}
+
+/* ==================== تأثيرات الضباب ==================== */
+.mist {
+    position: relative;
+    overflow: hidden;
+}
+
+.mist::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    animation: mist 3s ease-in-out infinite;
+}
+
+@keyframes mist {
+    to {
+        left: 100%;
+    }
+}
+
+/* ==================== تأثيرات الاهتزاز السريع ==================== */
+.vibrate {
+    animation: vibrate 0.3s linear infinite;
+}
+
+@keyframes vibrate {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+/* ==================== تأثيرات التحول ==================== */
+.morph {
+    animation: morph 4s ease-in-out infinite;
+}
+
+@keyframes morph {
+    0%, 100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+}
+
+/* ==================== تأثيرات العائم ==================== */
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* ==================== تأثيرات التحويل ثلاثي الأبعاد ==================== */
+.flip-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.flip-3d:hover {
+    transform: rotateY(180deg);
+}
+
+/* ==================== تأثيرات التكبير التدريجي ==================== */
+.grow {
+    animation: grow 0.5s ease-out forwards;
+}
+
+@keyframes grow {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+/* ==================== تأثيرات الاهتزاز العمودي ==================== */
+.jelly {
+    animation: jelly 0.5s ease-in-out;
+}
+
+@keyframes jelly {
+    0%, 100% { transform: scale(1, 1); }
+    25% { transform: scale(0.9, 1.1); }
+    50% { transform: scale(1.1, 0.9); }
+    75% { transform: scale(0.95, 1.05); }
+}
+
+/* ==================== تأثيرات التحول الدائري ==================== */
+.swing {
+    animation: swing 1s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+@keyframes swing {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(15deg); }
+    40% { transform: rotate(-10deg); }
+    60% { transform: rotate(5deg); }
+    80% { transform: rotate(-5deg); }
+}
+
+/* ==================== تأثيرات التلاشي المتكرر ==================== */
+.fade-pulse {
+    animation: fadePulse 2s ease-in-out infinite;
+}
+
+@keyframes fadePulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* ==================== تأثيرات الاهتزاز الدائري البطيء ==================== */
+.swing-slow {
+    animation: swingSlow 3s ease-in-out infinite;
+}
+
+@keyframes swingSlow {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+/* ==================== تأثيرات التحول المطاطي ==================== */
+.rubber-band {
+    animation: rubberBand 1s ease-in-out;
+}
+
+@keyframes rubberBand {
+    0% { transform: scale3d(1, 1, 1); }
+    30% { transform: scale3d(1.25, 0.75, 1); }
+    40% { transform: scale3d(0.75, 1.25, 1); }
+    50% { transform: scale3d(1.15, 0.85, 1); }
+    65% { transform: scale3d(0.95, 1.05, 1); }
+    75% { transform: scale3d(1.05, 0.95, 1); }
+    100% { transform: scale3d(1, 1, 1); }
+}
+
+/* ==================== تأثيرات الاهتزاز الأفقي ==================== */
+.tada {
+    animation: tada 1s ease-in-out;
+}
+
+@keyframes tada {
+    0% { transform: scale3d(1, 1, 1); }
+    10%, 20% { transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg); }
+    30%, 50%, 70%, 90% { transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg); }
+    40%, 60%, 80% { transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg); }
+    100% { transform: scale3d(1, 1, 1); }
+}

@@ -1,0 +1,307 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-gradient-to-br from-neon-blue to-neon-purple mb-8 shadow-[0_0_40px_rgba(0,243,255,0.4)]">
+            <i class="fas fa-check-circle text-5xl text-white"></i>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            هل يعمل <span class="gradient-text">جهازي؟</span>
+        </h1>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            تحقق مما إذا كان جهازك قادراً على تشغيل الألعاب أو نماذج الذكاء الاصطناعي محلياً
+        </p>
+    </div>
+</section>
+
+<!-- أداة التحقق -->
+<section class="py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+        <div class="neon-card p-8">
+            <!-- خطوات الأداة -->
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 rounded-full bg-neon-blue flex items-center justify-center text-white font-bold">1</div>
+                    <span class="mr-4 text-white">اختر نوع الاختبار</span>
+                </div>
+                <div class="hidden md:block w-16 h-0.5 bg-gray-700"></div>
+                <div class="flex items-center opacity-50" id="step2">
+                    <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold">2</div>
+                    <span class="mr-4 text-gray-400">اختر الجهاز</span>
+                </div>
+                <div class="hidden md:block w-16 h-0.5 bg-gray-700"></div>
+                <div class="flex items-center opacity-50" id="step3">
+                    <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold">3</div>
+                    <span class="mr-4 text-gray-400">النتيجة</span>
+                </div>
+            </div>
+            
+            <!-- اختيار نوع الاختبار -->
+            <div id="test-type-section" class="mb-8">
+                <h2 class="text-2xl font-bold text-white mb-6 text-center">ما الذي تريد اختباره؟</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <button onclick="selectTestType('game')" 
+                            class="test-type-btn group p-8 border-2 border-gray-700 rounded-2xl hover:border-neon-blue transition-all duration-300">
+                        <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-neon-blue to-blue-600 flex items-center justify-center mb-4 group-hover:shadow-[0_0_30px_rgba(0,243,255,0.4)] transition-shadow">
+                            <i class="fas fa-gamepad text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">ألعاب</h3>
+                        <p class="text-gray-400">تحقق من قدرة جهازك على تشغيل ألعاب معينة</p>
+                    </button>
+                    
+                    <button onclick="selectTestType('ai')" 
+                            class="test-type-btn group p-8 border-2 border-gray-700 rounded-2xl hover:border-neon-purple transition-all duration-300">
+                        <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-neon-purple to-purple-600 flex items-center justify-center mb-4 group-hover:shadow-[0_0_30px_rgba(188,19,254,0.4)] transition-shadow">
+                            <i class="fas fa-brain text-4xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">نماذج الذكاء الاصطناعي</h3>
+                        <p class="text-gray-400">تحقق من قدرة جهازك على تشغيل نماذج AI محلياً</p>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- اختيار اللعبة/النموذج -->
+            <div id="selection-section" class="hidden mb-8">
+                <button onclick="goBack()" class="mb-6 text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-arrow-right ml-2"></i>
+                    <span>رجوع</span>
+                </button>
+                
+                <h2 class="text-2xl font-bold text-white mb-6" id="selection-title"></h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="selection-grid">
+                    <!-- سيتم ملؤها بالJavaScript -->
+                </div>
+            </div>
+            
+            <!-- اختيار الجهاز -->
+            <div id="device-section" class="hidden mb-8">
+                <button onclick="goBackToSelection()" class="mb-6 text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-arrow-right ml-2"></i>
+                    <span>رجوع</span>
+                </button>
+                
+                <h2 class="text-2xl font-bold text-white mb-6">اختر جهازك</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {% for device in devices %}
+                    <button onclick="checkCompatibility('{{ device.id }}', '{{ device.name }}')" 
+                            class="device-btn p-4 border border-gray-700 rounded-xl hover:border-neon-blue hover:bg-neon-blue/10 transition-all text-right">
+                        <h4 class="text-white font-bold mb-2">{{ device.brand }} {{ device.name }}</h4>
+                        <p class="text-gray-400 text-sm">{{ device.processor }}</p>
+                        <p class="text-gray-400 text-sm">{{ device.ram }} / {{ device.gpu|truncatechars:30 }}</p>
+                    </button>
+                    {% empty %}
+                    <div class="col-span-3 text-center py-8">
+                        <p class="text-gray-400">لا توجد أجهزة مسجلة حالياً</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- النتيجة -->
+            <div id="result-section" class="hidden text-center">
+                <button onclick="goBackToDevice()" class="mb-6 text-gray-400 hover:text-white transition-colors flex items-center mx-auto">
+                    <i class="fas fa-arrow-right ml-2"></i>
+                    <span>رجوع</span>
+                </button>
+                
+                <div id="result-icon" class="mb-6"></div>
+                <h2 id="result-title" class="text-3xl font-bold text-white mb-4"></h2>
+                <p id="result-message" class="text-xl text-gray-400 mb-8"></p>
+                
+                <div id="result-details" class="max-w-2xl mx-auto p-6 bg-gray-800/50 rounded-xl mb-8"></div>
+                
+                <button onclick="resetTool()" class="px-8 py-3 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-white font-bold hover:shadow-[0_0_30px_rgba(0,243,255,0.4)] transition-all">
+                    اختبار آخر
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- قسم كيفية الاستخدام -->
+<section class="py-20 px-4 bg-gradient-to-b from-transparent to-black/30">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-white mb-12 text-center">
+            كيفية <span class="gradient-text">الاستخدام</span>
+        </h2>
+        
+        <div class="space-y-8">
+            <div class="flex items-start space-x-4 space-x-reverse">
+                <div class="w-12 h-12 rounded-full bg-neon-blue flex items-center justify-center text-white font-bold flex-shrink-0">1</div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">اختر نوع الاختبار</h3>
+                    <p class="text-gray-400">حدد ما إذا كنت تريد اختبار تشغيل لعبة أو نموذج ذكاء اصطناعي</p>
+                </div>
+            </div>
+            
+            <div class="flex items-start space-x-4 space-x-reverse">
+                <div class="w-12 h-12 rounded-full bg-neon-purple flex items-center justify-center text-white font-bold flex-shrink-0">2</div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">اختر اللعبة أو النموذج</h3>
+                    <p class="text-gray-400">اختر من قائمة الألعاب أو نماذج AI المدعومة</p>
+                </div>
+            </div>
+            
+            <div class="flex items-start space-x-4 space-x-reverse">
+                <div class="w-12 h-12 rounded-full bg-neon-pink flex items-center justify-center text-white font-bold flex-shrink-0">3</div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">اختر جهازك</h3>
+                    <p class="text-gray-400">حدد مواصفات جهازك من القائمة أو أدخلها يدوياً</p>
+                </div>
+            </div>
+            
+            <div class="flex items-start space-x-4 space-x-reverse">
+                <div class="w-12 h-12 rounded-full bg-neon-green flex items-center justify-center text-white font-bold flex-shrink-0">4</div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">احصل على النتيجة</h3>
+                    <p class="text-gray-400">سنخبرك ما إذا كان جهازك قادراً على التشغيل والأداء المتوقع</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+let selectedTestType = '';
+let selectedItem = null;
+
+const games = [
+    {% for game in games %}
+    { id: '{{ game.id }}', name: '{{ game.name }}', genre: '{{ game.genre }}', min_ram: '{{ game.min_ram }}', rec_ram: '{{ game.rec_ram }}' },
+    {% endfor %}
+];
+
+const aiModels = [
+    {% for model in ai_models %}
+    { id: '{{ model.id }}', name: '{{ model.name }}', min_vram: {{ model.min_vram }}, rec_vram: {{ model.rec_vram }} },
+    {% endfor %}
+];
+
+function selectTestType(type) {
+    selectedTestType = type;
+    document.getElementById('test-type-section').classList.add('hidden');
+    document.getElementById('selection-section').classList.remove('hidden');
+    document.getElementById('step2').classList.remove('opacity-50');
+    document.getElementById('step2').querySelector('div').classList.remove('bg-gray-700');
+    document.getElementById('step2').querySelector('div').classList.add('bg-neon-blue');
+    
+    const grid = document.getElementById('selection-grid');
+    grid.innerHTML = '';
+    
+    if (type === 'game') {
+        document.getElementById('selection-title').textContent = 'اختر اللعبة';
+        games.forEach(game => {
+            grid.innerHTML += `
+                <button onclick="selectItem('game', '${game.id}', '${game.name}')" 
+                        class="p-4 border border-gray-700 rounded-xl hover:border-neon-blue hover:bg-neon-blue/10 transition-all text-right">
+                    <h4 class="text-white font-bold mb-2">${game.name}</h4>
+                    <p class="text-gray-400 text-sm">${game.genre}</p>
+                </button>
+            `;
+        });
+    } else {
+        document.getElementById('selection-title').textContent = 'اختر نموذج AI';
+        aiModels.forEach(model => {
+            grid.innerHTML += `
+                <button onclick="selectItem('ai', '${model.id}', '${model.name}')" 
+                        class="p-4 border border-gray-700 rounded-xl hover:border-neon-purple hover:bg-neon-purple/10 transition-all text-right">
+                    <h4 class="text-white font-bold mb-2">${model.name}</h4>
+                    <p class="text-gray-400 text-sm">الحد الأدنى: ${model.min_vram}GB VRAM</p>
+                </button>
+            `;
+        });
+    }
+}
+
+function selectItem(type, id, name) {
+    selectedItem = { type, id, name };
+    document.getElementById('selection-section').classList.add('hidden');
+    document.getElementById('device-section').classList.remove('hidden');
+    document.getElementById('step3').classList.remove('opacity-50');
+    document.getElementById('step3').querySelector('div').classList.remove('bg-gray-700');
+    document.getElementById('step3').querySelector('div').classList.add('bg-neon-green');
+}
+
+function checkCompatibility(deviceId, deviceName) {
+    // محاكاة فحص التوافق - في الواقع سيكون هناك طلب AJAX للخادم
+    const isCompatible = Math.random() > 0.3; // 70% احتمالية النجاح للعرض التوضيحي
+    
+    document.getElementById('device-section').classList.add('hidden');
+    document.getElementById('result-section').classList.remove('hidden');
+    
+    const resultIcon = document.getElementById('result-icon');
+    const resultTitle = document.getElementById('result-title');
+    const resultMessage = document.getElementById('result-message');
+    const resultDetails = document.getElementById('result-details');
+    
+    if (isCompatible) {
+        resultIcon.innerHTML = '<i class="fas fa-check-circle text-8xl text-neon-green"></i>';
+        resultTitle.textContent = 'نعم، يعمل!';
+        resultTitle.className = 'text-3xl font-bold text-neon-green mb-4';
+        resultMessage.textContent = `جهازك ${deviceName} قادر على تشغيل ${selectedItem.name}`;
+        resultDetails.innerHTML = `
+            <div class="grid grid-cols-2 gap-4">
+                <div class="text-right">
+                    <p class="text-gray-400 text-sm">الأداء المتوقع</p>
+                    <p class="text-neon-green font-bold text-xl">ممتاز</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-gray-400 text-sm">معدل الإطارات</p>
+                    <p class="text-white font-bold text-xl">60+ FPS</p>
+                </div>
+            </div>
+        `;
+    } else {
+        resultIcon.innerHTML = '<i class="fas fa-times-circle text-8xl text-neon-pink"></i>';
+        resultTitle.textContent = 'للأسف، لا يعمل';
+        resultTitle.className = 'text-3xl font-bold text-neon-pink mb-4';
+        resultMessage.textContent = `جهازك ${deviceName} لا يستوفي متطلبات ${selectedItem.name}`;
+        resultDetails.innerHTML = `
+            <div class="text-right">
+                <p class="text-gray-400 mb-2">السبب:</p>
+                <p class="text-white">كرت الشاشة لا يملك ذاكرة كافية</p>
+            </div>
+        `;
+    }
+}
+
+function goBack() {
+    document.getElementById('selection-section').classList.add('hidden');
+    document.getElementById('test-type-section').classList.remove('hidden');
+    document.getElementById('step2').classList.add('opacity-50');
+    document.getElementById('step2').querySelector('div').classList.add('bg-gray-700');
+    document.getElementById('step2').querySelector('div').classList.remove('bg-neon-blue');
+}
+
+function goBackToSelection() {
+    document.getElementById('device-section').classList.add('hidden');
+    document.getElementById('selection-section').classList.remove('hidden');
+    document.getElementById('step3').classList.add('opacity-50');
+    document.getElementById('step3').querySelector('div').classList.add('bg-gray-700');
+    document.getElementById('step3').querySelector('div').classList.remove('bg-neon-green');
+}
+
+function goBackToDevice() {
+    document.getElementById('result-section').classList.add('hidden');
+    document.getElementById('device-section').classList.remove('hidden');
+}
+
+function resetTool() {
+    selectedTestType = '';
+    selectedItem = null;
+    document.getElementById('result-section').classList.add('hidden');
+    document.getElementById('test-type-section').classList.remove('hidden');
+    document.getElementById('step2').classList.add('opacity-50');
+    document.getElementById('step2').querySelector('div').classList.add('bg-gray-700');
+    document.getElementById('step2').querySelector('div').classList.remove('bg-neon-blue');
+    document.getElementById('step3').classList.add('opacity-50');
+    document.getElementById('step3').querySelector('div').classList.add('bg-gray-700');
+    document.getElementById('step3').querySelector('div').classList.remove('bg-neon-green');
+}
+</script>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,601 @@
+/*
+ * Neon Theme CSS
+ * Performance Lab - تصميم النيون
+ */
+
+/* ==================== المتغيرات ==================== */
+:root {
+    --neon-blue: #00f3ff;
+    --neon-purple: #bc13fe;
+    --neon-pink: #ff006e;
+    --neon-green: #39ff14;
+    --neon-yellow: #ffff00;
+    --dark-bg: #0a0a0f;
+    --card-bg: #12121a;
+    --card-bg-light: #1a1a25;
+}
+
+/* ==================== تأثيرات النيون للنص ==================== */
+.neon-text-blue {
+    color: var(--neon-blue);
+    text-shadow: 
+        0 0 5px var(--neon-blue),
+        0 0 10px var(--neon-blue),
+        0 0 20px var(--neon-blue),
+        0 0 40px var(--neon-blue);
+}
+
+.neon-text-purple {
+    color: var(--neon-purple);
+    text-shadow: 
+        0 0 5px var(--neon-purple),
+        0 0 10px var(--neon-purple),
+        0 0 20px var(--neon-purple),
+        0 0 40px var(--neon-purple);
+}
+
+.neon-text-pink {
+    color: var(--neon-pink);
+    text-shadow: 
+        0 0 5px var(--neon-pink),
+        0 0 10px var(--neon-pink),
+        0 0 20px var(--neon-pink),
+        0 0 40px var(--neon-pink);
+}
+
+.neon-text-green {
+    color: var(--neon-green);
+    text-shadow: 
+        0 0 5px var(--neon-green),
+        0 0 10px var(--neon-green),
+        0 0 20px var(--neon-green),
+        0 0 40px var(--neon-green);
+}
+
+/* ==================== تأثيرات النيون للحدود ==================== */
+.neon-border-blue {
+    border: 1px solid var(--neon-blue);
+    box-shadow: 
+        0 0 5px var(--neon-blue),
+        inset 0 0 5px var(--neon-blue);
+}
+
+.neon-border-purple {
+    border: 1px solid var(--neon-purple);
+    box-shadow: 
+        0 0 5px var(--neon-purple),
+        inset 0 0 5px var(--neon-purple);
+}
+
+.neon-border-pink {
+    border: 1px solid var(--neon-pink);
+    box-shadow: 
+        0 0 5px var(--neon-pink),
+        inset 0 0 5px var(--neon-pink);
+}
+
+/* ==================== تأثيرات النيون للأزرار ==================== */
+.neon-btn-blue {
+    background: linear-gradient(135deg, var(--neon-blue), #0088ff);
+    border: none;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.neon-btn-blue::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.neon-btn-blue:hover::before {
+    left: 100%;
+}
+
+.neon-btn-blue:hover {
+    box-shadow: 
+        0 0 20px var(--neon-blue),
+        0 0 40px var(--neon-blue),
+        0 0 60px var(--neon-blue);
+    transform: translateY(-2px);
+}
+
+/* ==================== بطاقات النيون ==================== */
+.neon-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.neon-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 16px;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.neon-card:hover::before {
+    opacity: 1;
+}
+
+.neon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 10px 40px rgba(0, 243, 255, 0.1),
+        0 0 60px rgba(188, 19, 254, 0.05);
+}
+
+/* ==================== تأثير الإضاءة المتحركة ==================== */
+@keyframes neon-pulse {
+    0%, 100% {
+        opacity: 1;
+        filter: brightness(1);
+    }
+    50% {
+        opacity: 0.8;
+        filter: brightness(1.2);
+    }
+}
+
+.neon-pulse {
+    animation: neon-pulse 2s ease-in-out infinite;
+}
+
+/* ==================== تأثير الوميض ==================== */
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+        text-shadow: 
+            0 0 5px var(--neon-blue),
+            0 0 10px var(--neon-blue),
+            0 0 20px var(--neon-blue);
+    }
+    20%, 24%, 55% {
+        opacity: 0.5;
+        text-shadow: none;
+    }
+}
+
+.neon-flicker {
+    animation: neon-flicker 3s infinite;
+}
+
+/* ==================== تأثير التدرج المتحرك ==================== */
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.gradient-animated {
+    background: linear-gradient(
+        -45deg, 
+        var(--neon-blue), 
+        var(--neon-purple), 
+        var(--neon-pink), 
+        var(--neon-green)
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+}
+
+/* ==================== تأثير الإطار المضيء ==================== */
+.glow-frame {
+    position: relative;
+}
+
+.glow-frame::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+    z-index: -1;
+    opacity: 0;
+    filter: blur(10px);
+    transition: opacity 0.3s ease;
+}
+
+.glow-frame:hover::after {
+    opacity: 0.7;
+}
+
+/* ==================== شريط التمرير المخصص ==================== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--neon-blue), var(--neon-purple));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--neon-purple), var(--neon-pink));
+}
+
+/* ==================== تأثير الموجة ==================== */
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.wave-animation {
+    animation: wave 2s ease-in-out infinite;
+}
+
+/* ==================== تأثير الدوران ==================== */
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spin-slow {
+    animation: spin-slow 20s linear infinite;
+}
+
+/* ==================== تأثير الاهتزاز ==================== */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* ==================== تأثير التكبير ==================== */
+@keyframes zoom-in {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.zoom-in {
+    animation: zoom-in 0.5s ease-out;
+}
+
+/* ==================== تأثير الانزلاق ==================== */
+@keyframes slide-up {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.slide-up {
+    animation: slide-up 0.6s ease-out;
+}
+
+/* ==================== تأثير الكتابة ==================== */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--neon-blue); }
+}
+
+.typing-effect {
+    overflow: hidden;
+    white-space: nowrap;
+    border-left: 2px solid var(--neon-blue);
+    animation: 
+        typing 3s steps(40, end),
+        blink-caret 0.75s step-end infinite;
+}
+
+/* ==================== تأثير الجسيمات ==================== */
+.particles-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.particles-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, var(--neon-blue) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--neon-purple) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, var(--neon-pink) 0%, transparent 30%);
+    opacity: 0.1;
+    animation: particles-move 20s ease-in-out infinite;
+}
+
+@keyframes particles-move {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
+
+/* ==================== تأثير الزجاج ==================== */
+.glass-effect {
+    background: rgba(18, 18, 26, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==================== تأثير الإضاءة من الأسفل ==================== */
+.glow-bottom {
+    position: relative;
+}
+
+.glow-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+
+/* ==================== تأثير الحافة المضيئة ==================== */
+.glow-edge {
+    box-shadow: 
+        0 0 5px var(--neon-blue),
+        0 0 10px var(--neon-blue),
+        0 0 20px var(--neon-blue),
+        inset 0 0 5px rgba(0, 243, 255, 0.1);
+}
+
+/* ==================== تأثير النص المتدرج ==================== */
+.gradient-text {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ==================== تأثير الظل المضيء ==================== */
+.glow-shadow {
+    box-shadow: 
+        0 0 20px rgba(0, 243, 255, 0.3),
+        0 0 40px rgba(188, 19, 254, 0.2),
+        0 0 60px rgba(255, 0, 110, 0.1);
+}
+
+/* ==================== تأثير الخط المتعرج ==================== */
+.zigzag-line {
+    position: relative;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+}
+
+.zigzag-line::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 5px,
+        var(--neon-blue) 5px,
+        var(--neon-blue) 10px
+    );
+    opacity: 0.5;
+}
+
+/* ==================== تأثير الدائرة المضيئة ==================== */
+.glow-circle {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--neon-blue) 0%, transparent 70%);
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* ==================== تأثير الموجة الصوتية ==================== */
+.sound-wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 30px;
+}
+
+.sound-wave span {
+    width: 4px;
+    background: linear-gradient(to top, var(--neon-blue), var(--neon-purple));
+    border-radius: 2px;
+    animation: sound-wave 1s ease-in-out infinite;
+}
+
+.sound-wave span:nth-child(1) { animation-delay: 0s; height: 20%; }
+.sound-wave span:nth-child(2) { animation-delay: 0.1s; height: 40%; }
+.sound-wave span:nth-child(3) { animation-delay: 0.2s; height: 60%; }
+.sound-wave span:nth-child(4) { animation-delay: 0.3s; height: 80%; }
+.sound-wave span:nth-child(5) { animation-delay: 0.4s; height: 100%; }
+.sound-wave span:nth-child(6) { animation-delay: 0.3s; height: 80%; }
+.sound-wave span:nth-child(7) { animation-delay: 0.2s; height: 60%; }
+.sound-wave span:nth-child(8) { animation-delay: 0.1s; height: 40%; }
+.sound-wave span:nth-child(9) { animation-delay: 0s; height: 20%; }
+
+@keyframes sound-wave {
+    0%, 100% {
+        transform: scaleY(0.5);
+    }
+    50% {
+        transform: scaleY(1);
+    }
+}
+
+/* ==================== تأثير التحميل ==================== */
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid transparent;
+    border-top-color: var(--neon-blue);
+    border-right-color: var(--neon-purple);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==================== تأثير التدرج المضيء ==================== */
+.glow-gradient {
+    background: linear-gradient(135deg, 
+        rgba(0, 243, 255, 0.2), 
+        rgba(188, 19, 254, 0.2),
+        rgba(255, 0, 110, 0.2)
+    );
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    box-shadow: 
+        0 0 20px rgba(0, 243, 255, 0.1),
+        inset 0 0 20px rgba(188, 19, 254, 0.05);
+}
+
+/* ==================== تأثير البطاقة المائلة ==================== */
+.tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+.tilt-card:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
+}
+
+/* ==================== تأثير النص المضيء عند التمرير ==================== */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==================== تأثير الحدود المتحركة ==================== */
+.animated-border {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.animated-border::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0%,
+        var(--neon-blue) 25%,
+        var(--neon-purple) 50%,
+        var(--neon-pink) 75%,
+        transparent 100%
+    );
+    animation: rotate-border 4s linear infinite;
+}
+
+.animated-border::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: var(--card-bg);
+    border-radius: 14px;
+}
+
+@keyframes rotate-border {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animated-border-content {
+    position: relative;
+    z-index: 1;
+}

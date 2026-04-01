@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            الأدوات <span class="gradient-text">التفاعلية</span>
+        </h1>
+        <p class="text-xl text-gray-400">
+            اختبر أداء جهازك باستخدام أدواتنا المتقدمة
+        </p>
+    </div>
+</section>
+
+<section class="py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <a href="{% url 'tools:will_it_run' %}" class="neon-card p-8 text-center hover:scale-105 transition-transform">
+                <i class="fas fa-check-circle text-6xl text-neon-blue mb-4"></i>
+                <h3 class="text-xl font-bold text-white mb-2">هل يعمل؟</h3>
+                <p class="text-gray-400">تحقق من توافق جهازك مع الألعاب ونماذج AI</p>
+            </a>
+            
+            <a href="{% url 'tools:compare' %}" class="neon-card p-8 text-center hover:scale-105 transition-transform">
+                <i class="fas fa-exchange-alt text-6xl text-neon-purple mb-4"></i>
+                <h3 class="text-xl font-bold text-white mb-2">مقارنة الأجهزة</h3>
+                <p class="text-gray-400">قارن بين الأجهزة المختلفة</p>
+            </a>
+            
+            <a href="{% url 'tools:analyze' %}" class="neon-card p-8 text-center hover:scale-105 transition-transform">
+                <i class="fas fa-chart-line text-6xl text-neon-pink mb-4"></i>
+                <h3 class="text-xl font-bold text-white mb-2">تحليل الأداء</h3>
+                <p class="text-gray-400">احصل على تحليل مفصل لأداء جهازك</p>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
